@@ -1,3 +1,5 @@
+/* Write a class in JAVA having two private variables and one member function which will return the area of the rectangle */
+
 class Rectangle{
 	private int length;
 	private int breadth;
