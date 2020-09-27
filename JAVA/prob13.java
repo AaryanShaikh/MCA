@@ -1,4 +1,5 @@
-/* Write a program that defines an array of 10 int ranging from 1 - 100. prompt the user to enter 10 int and store in an array. search the array for the highest and lowest scores
+/* Write a program that defines an array of 10 int ranging from 1 - 100. prompt the user to enter 10 int and store in an array. search the array for the highest and lowest 
+scores
 and print both of these values together with it index.
 */
 import java.util.*;
