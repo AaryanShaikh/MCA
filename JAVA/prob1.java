@@ -3,7 +3,7 @@ class Rectangle{
 	private int breadth;
 	Rectangle(int x, int y){
 		length = x;
-		breadth = y; 
+		breadth = y;
 	}
 	
 	int area(){
