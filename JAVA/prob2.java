@@ -1,3 +1,8 @@
+/*Write a class in java called "student" with
+Data Members:
+name,marks1,marks2
+The Program asks the user to enter the name and marks. then calc_media() calculates total marks on screen in different lines.*/
+
 import java.util.*;
 class Student{
 	String name;
