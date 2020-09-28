@@ -1,4 +1,5 @@
-/* Write programs for the following: 1. To find arithmetic mean of two numbers. 2. To find absolute value of a number.
+/* Write programs for the following: 1. To find arithmetic mean of two numbers. 2. To find absolute value of a number. 3.To convert a uppercase alphabet to lowercase. 4. To 
+obtain the bigger of two numbers. 
 */
 import java.util.*;
 public class prob25{
@@ -12,6 +13,10 @@ public class prob25{
 			num = in.nextInt();
 			res+=num;
 		}
-		System.out.println("The Arithmetic Mean is + Absolute value is "+Math.abs(res/size));
+		System.out.println("The Arithmetic Mean is "+res/size);
+		System.out.println("Absolute value is "+Math.abs(res/size));
+		String str = "IAmCypher";
+		System.out.println(str.toLowerCase());
+		System.out.println("The highest of the two numbers is "+Math.max(56, 55));
 	}
 }
