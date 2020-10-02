@@ -63,10 +63,6 @@ public class sjf{
 			System.out.println(p[i]+"\t"+at[i]+"\t"+bt[i]+"\t"+ct[i]+"\t"+tat[i]+"\t"+wt[i]);		
 		}
 		System.out.println("Average Tat: "+avgtat/size);
-		System.out.println("Average Wt: "+avgwt/size);
-		System.out.println("Gantt Chart");
-		for (int i=0;i<size ;i++ ) {
-				System.out.print(" P"+p[i]+" ");
-			}	
+		System.out.println("Average Wt: "+avgwt/size);	
 	}
 }
