@@ -1,0 +1,20 @@
+import java.util.*;
+public class LinearSearch{
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		System.out.println("Enter the element you want to search");
+		int ele = in.nextInt();
+		System.out.println("Enter the size of the array in which you want to search "+ele);
+		int size = in.nextInt();
+		int arr[] = new int[size];
+		System.out.println("Enter the "+size+" Elements of the array");
+		for (int i=0;i<size ;i++ ) {
+			arr[i] = in.nextInt();
+			if (arr[i]==ele) {
+				System.out.println("Element found at Index "+i);
+				System.exit(1);
+			}
+		}
+		System.out.println(ele+" was not present in the array!");
+	}
+}
