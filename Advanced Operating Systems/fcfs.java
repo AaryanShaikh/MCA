@@ -5,8 +5,8 @@ public class fcfs{
 		System.out.println("Enter the number of proccess");
 		int size = in.nextInt();
 		System.out.println("Enter the Arrival time");
-		int at[] = new int[size];
-		int bt[] = new int[size];
+		int at[] = new int[size];/*Arrival Time(AT)*/
+		int bt[] = new int[size];/*Burst Time(BT)*/
 		for (int i=0;i<size ;i++ ) {
 			at[i] = in.nextInt();
 		}
@@ -14,16 +14,16 @@ public class fcfs{
 		for (int i=0;i<size ;i++ ) {
 			bt[i] = in.nextInt();
 		}
-		int c[] = new int[size];
-		c[0] = bt[0];
+		int c[] = new int[size];/*Completion Time(CT)*/
+		c[0] = bt[0];/*First Process will Complete first*/
 		for (int i=1;i<=size-1 ;i++ ) {
-			c[i] = bt[i]+c[i-1];
+			c[i] = bt[i]+c[i-1];/*Add the BT of Curr process to the CT of the prev process */
 		}
-		int tat[] = new int[size];
+		int tat[] = new int[size];/*Turnaround Time(TAT)*/
 		for (int i=0;i<size ;i++ ) {
 			tat[i] = c[i]-at[i];
 		}
-		int wt[] = new int[size];
+		int wt[] = new int[size];/*Waiting Time(WT)*/
 		for (int i=0;i<size ;i++ ) {
 			wt[i] = tat[i]-bt[i];
 		}
