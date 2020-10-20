@@ -14,10 +14,19 @@ public class FifoPageReplacement{
 		int frame[] = new int[fsize];
 		int pageHit = 0;
 		int index = 0;
+		System.out.println("Frames");
 		for (int i=0;i<size ;i++ ) {
 		 	if (i<=2) {
 		 		frame[index] = page[i];
 		 		index = (index+1)%3;
+		 		for (int x=0;x<fsize ;x++ ) {
+			 			if (frame[x]==0) {
+			 				System.out.print(" ");
+			 			}else{
+			 				System.out.print(frame[x]+" ");
+			 			}
+			 		}
+			 		System.out.println();
 		 	}else{
 		 		int k=0;
 			 	while(k<frame.length){
@@ -31,10 +40,18 @@ public class FifoPageReplacement{
 			 	if (k>=frame.length) {
 			 		frame[index] = page[i];
 			 		index = (index+1)%3;
+			 		for (int x=0;x<fsize ;x++ ) {
+			 			if (frame[x]==0) {
+			 				System.out.print(" ");
+			 			}else{
+			 				System.out.print(frame[x]+" ");
+			 			}
+			 		}
+			 		System.out.println();
 			 	}
 		 	}
 		 }
-		 System.out.println("Page hit is : "+pageHit);
-		 System.out.println("Page fault is : "+(size-pageHit)); 
+		 System.out.println("Page hit : "+pageHit);
+		 System.out.println("Page fault : "+(size-pageHit)); 
 	}
 }
