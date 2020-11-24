@@ -20,13 +20,14 @@ public class FcfsDSA{
 			System.out.print(disp[i]+"\t");
 		}
 		System.out.println();
-		int count = 0, num = 1;
-		boolean check = true;
+		int count = 0, num = 1, total = 0,prev = 0;
+		boolean check = true; 
 		for (int j=0;j<size ;j++ ) {
 			count = 0;
 			if (check) {
 				for (int i=0;i<disp.length ;i++ ) {
 					if (disk[size]==disp[i]) {
+						prev = disk[size];
 						int k=0;
 						while(k<count){
 							System.out.print("\t");
@@ -44,6 +45,8 @@ public class FcfsDSA{
 			}else{
 				for (int i=0;i<disp.length ;i++ ) {
 					if(disk[j]==disp[i]){
+						total+=Math.abs(prev-disk[j]);
+						prev = disk[j];
 						int k=0;
 						while(k<count){
 							System.out.print("\t");
@@ -59,5 +62,6 @@ public class FcfsDSA{
 			}
 			System.out.println();
 		}
+		System.out.println("Total head movement of "+total+" tracks");
 	}
 }
