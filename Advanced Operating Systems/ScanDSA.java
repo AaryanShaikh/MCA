@@ -34,7 +34,6 @@ public class ScanDSA{
 			}
 		}
 		System.out.println();
-		boolean left = true,right = true;
 		int i=index-1;
 		while(true) {
 			if (i>=0) {
