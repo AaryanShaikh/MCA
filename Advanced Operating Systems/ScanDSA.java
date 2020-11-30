@@ -61,5 +61,6 @@ public class ScanDSA{
 				break;
 			}
 		}
+		System.out.println("Total seek time is "+(disk[size]+disp[disp.length-2]));
 	}
 }
