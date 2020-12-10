@@ -1,4 +1,2 @@
 # MCA
-I'm actually too lazy to write something here.
-In simple words anything related to MCA will be here.... I guess!
-4,622 Lines of Code so far...
+4,622 Lines of Code 
