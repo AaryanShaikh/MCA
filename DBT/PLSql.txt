@@ -1,0 +1,200 @@
+//normal pl/sql
+declare
+i number;
+begin
+i:=0;
+loop
+dbms_output.put_line(i);
+i:=i+1;
+exit when i>5;
+end loop;
+end;
+
+//procedure
+create or replace procedure getMaxCID
+as
+maxname customers.name%type;
+begin
+select name into maxname from customers where customer_id = (select max(customer_id) from customers);
+dbms_output.put_line(maxname);
+end;
+
+//cursor
+->implicit cursor
+create or replace procedure upCustName(newName varchar2, cid number)
+as
+no_of_rows number;
+begin
+update customers set name = newName where customer_id > cid;
+if SQL%FOUND then
+no_of_rows := SQL%ROWCOUNT;
+dbms_output.put_line('The total of '||no_of_rows||' records were updated successfully!!!!');
+else
+dbms_output.put_line('Some Error occured while updating');
+end if;
+end;
+
+->explicit cursor
+declare cursor c1
+is
+select name from customers where credit_limit = 2300;
+res c1%rowtype;
+counter number;
+begin
+select count(name) into counter  from customers where credit_limit = 2300;
+if SQL%FOUND then
+dbms_output.put_line('The total no of results is ' ||counter);
+for res in c1 loop
+dbms_output.put_line(res.name);
+end loop;
+end if;
+end;
+
+declare cursor c1 
+is
+select count(countries.country_name) as ccount,regions.region_name as name from regions,countries where countries.region_id = regions.region_id group by countries.region_id,regions.region_name;
+res c1%rowtype;
+begin
+for res in c1 loop
+dbms_output.put_line(res.name||' has '||res.ccount||' countries');
+end loop;
+end;
+
+//cursor in procedure
+create or replace procedure dispCount(rname varchar2)
+is
+cursor c1 is
+select count(countries.country_name) as ccount,regions.region_name as name from regions,countries where countries.region_id = regions.region_id and regions.region_name = rname group by countries.region_id,regions.region_name;
+res c1%rowtype;
+begin
+for res in c1 loop
+dbms_output.put_line('The region '||res.name||' has '||res.ccount||' countries!!');
+end loop;
+end;
+ 
+//functions -> will always return a  value
+create or replace function calcTotal(cname varchar2)
+return int
+is
+total int;
+begin
+select count(country_name) into total from countries;
+return total;
+end;
+
+//triggers
+-> Before 
+create or replace trigger chkMail
+before insert on employees for each row
+declare
+no_of_rows int;
+begin
+select count(employee_id) into no_of_rows from employees where email = :NEW.email;
+if SQL%ROWCOUNT<>0 then
+raise_application_error(-20001,'This email is already registered in the Database');
+end if;
+end;
+
+->After
+Create or replace trigger cleaner
+after delete on employees for each row
+declare
+empno int;
+begin
+empno := :OLD.employee_id;
+delete from employees where employee_id = empno;
+end;
+
+//Package
+->package creation
+create package cust_address
+as
+procedure find_address(cid customers.customer_id%type);
+end cust_address;
+
+->package body
+create or replace package body cust_address
+as
+procedure find_address(cid customers.customer_id%type)
+is
+caddr customers.address%type;
+begin
+select address into caddr from customers where customer_id = cid;
+dbms_output.put_line('The Address of Customer id '||cid||' is '||caddr);
+end find_address;
+end cust_address;
+
+//Exception
+declare
+custid customers.customer_id%type;
+cname customers.name%type;
+begin
+custid := :inputCustid;
+select name into cname from customers where customer_id = custid;
+dbms_output.put_line('The Id no '||custid||' belongs to '||cname);
+exception
+when no_data_found then
+dbms_output.put_line('You Stupid!!! No such Customer id exits!!');
+when others then
+dbms_output.put_line('error');
+end
+
+->user defined exceptions
+declare
+cid customers.customer_id%type;
+cname customers.name%type;
+lessThanZero exception;
+begin
+cid := :cidInput;
+if cid > 0 then 
+select name into cname from customers where customer_id = cid;
+dbms_output.put_line(cname);
+else 
+raise lessThanZero;
+end if; 
+exception
+when lessThanZero then
+dbms_output.put_line('You stupid!!!');
+when no_data_found then
+dbms_output.put_line('The Id u mentioned is not pressent');
+when others then
+dbms_output.put_line('error');
+end
+
+//My First Program
+create or replace procedure exp1(choice countries.country_id%type, cid customers.customer_id%type)
+as
+cname customers.name%type; 
+lessThanZero exception;
+cursor c1 
+is
+select count(countries.country_name) as ccount,regions.region_name as name from regions,countries where countries.region_id = regions.region_id group by countries.region_id,regions.region_name;
+res c1%rowtype;
+begin
+if choice = 1 then
+for res in c1 loop
+dbms_output.put_line('There are '||res.ccount||' countries in '||res.name||' region.');
+end loop;
+else
+if cid <=0 then
+raise lessThanZero;
+else
+select name into cname from customers where customer_id = cid;
+dbms_output.put_line('The id '||cid||' belongs to '||cname);
+end if;
+end if;
+exception
+when lessThanZero then
+dbms_output.put_line('The Customer id cannot be 0');
+when no_data_found then
+dbms_output.put_line('No such customer id exists in the table');
+when others then
+dbms_output.put_line('error has occured when executing');
+end
+
+/* input types
+   1) exp1(1,128) -> will take data from COUNTRIES table match them to REGIONS table and display how may countries from COUNTRIES table belong to a region in REGIONS table.
+   2) exp1(2,0) -> will trigger a user-defined Exception which will handle id = 0 errors.
+   3) exp1(2,502) -> will trigger a system-defined Exception which will handle the errors if no such data exists in the table.
+   4) exp1(2,128) -> will return the name of the customer whose id is given as input if its valid. 
+*/
