@@ -158,3 +158,85 @@ print(test(mult, 2))
 triple = lambda x:x*3
 add = lambda x,y:x+y
 print(add(triple(3),4))
+
+# challenge 25
+def make_word():
+    word = ""
+    for ch in "spam":
+        word += ch
+        yield word
+print(list(make_word()))
+
+# challlenge 26
+def fib(x):
+    if x==0 or x==1:
+        return 1
+    else:
+        return fib(x-1)+fib(x-2)
+print(fib(4))
+
+# challenge 27
+letters = {"a","b","c","d"}
+if "e" not in letters:
+    print(1)
+else:
+    print(2)
+
+# challenge 28
+a = {1,2,3}
+b = {0,3,4,5}
+print(a&b)
+
+# challenge 29
+from itertools import product
+a = {1,2}
+print(len(list(product(range(3),a))))
+
+# challenge 30
+nums = {1,2,3,4,5,6}
+nums = {0,1,2,3} & nums
+nums = filter(lambda x:x>1,nums)
+print(len(list(nums)))
+
+# challenge 31
+def power(x,y):
+    if y==0:
+        return 1
+    else:
+        return x*power(x,y-1)
+print(power(2,3))
+
+# challenge 32
+class A:
+    def method(self):
+        print(1)
+class B:
+    def method(self):
+        print(2)
+B().method()
+
+# challenge 33
+class A:
+    def a(self):
+        print(1)
+class B(A):
+    def a(self):
+        print(2)
+class C(B):
+    def c(B):
+        print(3)
+c = C()
+c.a()
+
+# challenge 33
+import re
+pat = r"1(23)(4(56)78)9(0)"
+match = re.match(pat,"1234567890")
+if match:
+    print(match.group(3))
+
+# challenge 34
+pat = r"(a)(b(?:c)(d)(?:e))"
+match = re.match(pat,"abcde")
+if match:
+    print(len(match.groups()))
