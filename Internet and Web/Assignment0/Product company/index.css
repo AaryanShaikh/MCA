@@ -1,0 +1,139 @@
+body{
+	margin: 0;
+	padding: 0;
+	max-width: 1000px;
+	font-family: poppins;
+}
+#header{
+	display: flex;
+	border: 1px solid black;
+	height: 70px;
+	background: #2a2a2a;
+	color: white;
+	width: 1369px;
+}
+#logo{
+	position: relative;
+	top: 0px;
+	left: 50px;
+	font-family: Montez;
+	font-size: 40px;
+	text-shadow: 1px 1px 4px #000000;
+}
+#nav ul{
+	position: relative;
+	display: flex;
+	left: 100px;
+}
+#nav ul li{
+	list-style: none;
+	margin-left: 60px;
+	transition: .5s;
+}
+#main{
+	display: flex;
+}
+#img{
+	position: relative;
+	left: 10%;
+}
+#img img{
+	height: 500px;
+	width: 500px;
+}
+#details{
+	position: relative;
+	left: 25%;
+}
+#details h1{
+	text-shadow: 1px 1px 2px #333;
+}
+#left{
+	display: flex;
+}
+#left label{
+	margin-right: 76px;
+	margin-bottom: 20px;
+}
+#left select{
+	margin-right: 100px;
+}
+#add{
+	position: relative;
+	left: 100px;
+	top: 10px;
+	height: 50px;
+	width: 100px;
+	border: 1px solid transparent;
+	text-align: center;
+	border-radius: 15px;
+	color: white;
+	transition: 1.5s;
+	background: linear-gradient(to right, #cb356b, #bd3f32); 
+}
+#add:hover{
+	transition: .5s;
+	color: black;
+}
+#rec{
+	position: relative;
+	left: 10px;
+	display: flex;
+}
+#recd{
+	margin-left: 40px;
+}
+#template{
+	margin-right: 90px;
+	height: 350px;
+	width: 250px;
+	border: 1px solid transparent;
+	text-align: center;
+	border-radius: 20px;
+	transition: .5s;
+	background: linear-gradient(to top, #c9d6ff, #e2e2e2);
+}
+#template:hover{
+	box-shadow: 10px 10px 20px #333;
+	transition: .5s;
+}
+#template img{
+	height: 250px;
+	width: 250px;
+}
+#more{
+	height: 100px;
+	width: 100px;
+	border: 1px solid transparent;
+	transform: translate(580%, 0%);
+	text-align: center;
+	border-radius: 50%;
+	background: #2d2d2d;
+	color: white;
+	transition: .5s;
+}
+#more:hover{
+	transition: .5s;
+	background: white;	
+	color: black;
+	box-shadow: 5px 5px 20px #333;
+}
+#more p{
+	margin-top:30px; 
+	font-size: 20px;
+	font-weight: 500;
+}
+#footer{
+	background: #2d2d2d;
+	width: 1369px;
+	text-align: center;
+	color: white;
+}
+#footer h1{
+	font-family: Montez;	
+}
+select{
+	border-radius: 10px;
+	background: #2d2d2d;
+	color: white;
+}
